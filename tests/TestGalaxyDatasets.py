@@ -24,7 +24,7 @@ class TestGalaxyDatasets(GalaxyTestBase.GalaxyTestBase):
     def test_download_dataset(self):
         with self.assertRaises(Exception):
             self.gi.datasets.download_dataset(None)
-        self._wait_and_verify_dataset(self.dataset_id, b"1\t2\t3\n", timeout_seconds=25)
+        self._wait_and_verify_dataset(self.dataset_id, b"1\t2\t3\n", timeout_seconds=30)
 
     def test_show_stderr(self):
         stderr = self.gi.datasets.show_stderr(self.dataset_id)
