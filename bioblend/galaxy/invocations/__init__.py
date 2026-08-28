@@ -250,9 +250,7 @@ class InvocationClient(Client):
                 raise
             # Galaxy release_24.1 or earlier
             invocation = self.show_invocation(invocation_id)
-            workflow_step_id_to_index = {
-                step["workflow_step_id"]: index for index, step in enumerate(invocation["steps"])
-            }
+            workflow_step_id_to_index = {step["workflow_step_id"]: step["order_index"] for step in invocation["steps"]}
             # Merge input_step_parameters (indexed by label) into inputs (indexed by step index)
             inputs = invocation["inputs"]
             for param_input_dict in invocation["input_step_parameters"].values():
