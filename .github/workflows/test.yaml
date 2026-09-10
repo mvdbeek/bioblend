@@ -63,65 +63,66 @@ jobs:
             tox_env: py310
             galaxy_version: release_24.0
             galaxy_python_version: '3.8'
-          # Python 3.7 is not available via setup-python on ubuntu >=24.04
-          - os: ubuntu-22.04
+          # The minimum Python supported version by the following releases is
+          # 3.7, but it is not available via setup-python on ubuntu >=24.04
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_23.2
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_23.1
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_23.0
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_22.05
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_22.01
-            galaxy_python_version: '3.7'
+            galaxy_python_version: '3.8'
           # The minimum Python supported version by the following releases is
-          # 3.6, but it is EOL
-          - os: ubuntu-22.04
+          # 3.6, but it is not available via setup-python on ubuntu >=24.04
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_21.09
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_21.05
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_21.01
-            galaxy_python_version: '3.7'
+            galaxy_python_version: '3.8'
           # The minimum Python supported version by the following releases is
-          # 3.5, but it is EOL
-          - os: ubuntu-22.04
+          # 3.5, but it is not available via setup-python on ubuntu >=24.04
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_20.09
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_20.05
-            galaxy_python_version: '3.7'
+            galaxy_python_version: '3.8'
           # The minimum Python supported version by the following releases is
-          # 2.7, but it is EOL
-          - os: ubuntu-22.04
+          # 2.7, but it is not available via setup-python on ubuntu >=24.04
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_20.01
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_19.09
-            galaxy_python_version: '3.7'
-          - os: ubuntu-22.04
+            galaxy_python_version: '3.8'
+          - os: ubuntu-latest
             tox_env: py310
             galaxy_version: release_19.05
-            galaxy_python_version: '3.7'
+            galaxy_python_version: '3.8'
           - os: ubuntu-latest
             tox_env: py314
             galaxy_version: dev
