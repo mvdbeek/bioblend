@@ -124,7 +124,6 @@ class TestGalaxyHistories(GalaxyTestBase.GalaxyTestBase):
         # deleted_history = self.gi.histories.get_histories(deleted=True)
         # assert len(all_histories) >= len(deleted_history)
 
-    @test_util.skip_unless_galaxy("release_20.01")
     def test_other_users_histories(self):
         new_user, user_gi = test_util.new_user_gi(self.gi)
         # Normal users cannot use the `all` parameter

@@ -110,10 +110,11 @@ BIOBLEND_GALAXY_MASTER_API_KEY=$(LC_ALL=C tr -dc A-Za-z0-9 < /dev/urandom | head
 export BIOBLEND_GALAXY_MASTER_API_KEY
 export BIOBLEND_GALAXY_USER_EMAIL="${USER}@localhost.localdomain"
 DATABASE_CONNECTION=${DATABASE_CONNECTION:-"sqlite:///${TEMP_DIR}/database/universe.sqlite?isolation_level=IMMEDIATE"}
-# Update psycopg2 requirement to a version that doesn't use 2to3 for Galaxy release 19.05, see https://github.com/psycopg/psycopg2/issues/1419
-sed -i.bak -e 's/psycopg2-binary==2\.7\.4/psycopg2-binary==2.8.4/' lib/galaxy/dependencies/conditional-requirements.txt
 # Update pyparsing 3.0.x requirement to a version compatible with httplib2 0.31.1 (dependency of pykube)
 sed -i.bak -e 's/pyparsing==3\.0\.[0-9]/pyparsing==3.1.1/' lib/galaxy/dependencies/*-requirements.txt
+# For Galaxy releases 21.01 and 21.05, always install the pinned version of typing-extensions as it is a
+# dependency of cwltool, otherwise a newer version (incompatible with pydantic) will be installed.
+sed -i.bak -e 's/typing-extensions==3\.7\.4\.3; python_version .*$/typing-extensions==3.7.4.3/' $(realpath lib/galaxy/dependencies/pinned-requirements.txt)
 # Start Galaxy and wait for successful server start
 export GALAXY_SKIP_CLIENT_BUILD=1
 if grep -q wait_arg_set run.sh ; then

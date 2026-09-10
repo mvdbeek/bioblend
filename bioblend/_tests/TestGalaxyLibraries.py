@@ -4,7 +4,6 @@ from typing import Any
 
 from . import (
     GalaxyTestBase,
-    test_util,
 )
 
 FOO_DATA = "foo\nbar\n"
@@ -160,13 +159,11 @@ class TestGalaxyLibraries(GalaxyTestBase.GalaxyTestBase):
         assert {_[1] for _ in ret_get["modify_item_roles"]} == set(user_id_list_new)
         assert {_[1] for _ in ret_get["manage_dataset_roles"]} == set(user_id_list_new)
 
-    @test_util.skip_unless_galaxy("release_19.09")
     def test_upload_file_contents_with_tags(self):
         datasets = self.gi.libraries.upload_file_contents(self.library["id"], FOO_DATA, tags=["name:foobar", "barfoo"])
         dataset_show = self.gi.libraries.show_dataset(self.library["id"], datasets[0]["id"])
         assert listify(dataset_show["tags"]) == ["name:foobar", "barfoo"]
 
-    @test_util.skip_unless_galaxy("release_19.09")
     def test_update_dataset_tags(self):
         datasets = self.gi.libraries.upload_file_contents(self.library["id"], FOO_DATA)
         dataset_show = self.gi.libraries.show_dataset(self.library["id"], datasets[0]["id"])

@@ -82,8 +82,7 @@ class WorkflowClient(Client):
 
         :type instance: bool
         :param instance: treat ``workflow_id`` as a Workflow ID if True,
-          otherwise treat it as a StoredWorkflow ID (the default). This
-          parameter works only on Galaxy 20.01 or later.
+          otherwise treat it as a StoredWorkflow ID (the default).
 
         :type legacy: bool
         :param legacy: whether to use the legacy workflow format (default is

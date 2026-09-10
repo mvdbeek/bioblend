@@ -56,7 +56,6 @@ class TestGalaxyQuotas(GalaxyTestBase.GalaxyTestBase):
         response = self.gi.quotas.undelete_quota(self.quota["id"])
         assert response == "Undeleted 1 quotas: " + self.quota_name
 
-    @test_util.skip_unless_galaxy("release_19.09")  # for user purging
     def test_update_non_default_quota(self):
         """
         Test updating a non default quota.

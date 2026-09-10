@@ -276,7 +276,6 @@ class TestWorkflow(GalaxyObjectsTestBase):
         }
 
 
-@test_util.skip_unless_galaxy("release_19.09")
 class TestInvocation(GalaxyObjectsTestBase):
     dataset: wrappers.HistoryDatasetAssociation
     history: wrappers.History
@@ -416,7 +415,6 @@ class TestInvocation(GalaxyObjectsTestBase):
         )
 
 
-@test_util.skip_unless_galaxy("release_19.09")
 class TestObjInvocationClient(GalaxyObjectsTestBase):
     history: wrappers.History
     inv: wrappers.Invocation
@@ -973,7 +971,6 @@ class TestHDAContents(GalaxyObjectsTestBase):
         assert self.ds.purged
 
 
-@test_util.skip_unless_galaxy("release_19.09")
 class TestRunWorkflow(GalaxyObjectsTestBase):
     def setUp(self):
         super().setUp()
@@ -1025,7 +1022,6 @@ class TestRunWorkflow(GalaxyObjectsTestBase):
         self._test(pass_params=True)
 
 
-@test_util.skip_unless_galaxy("release_19.09")
 class TestRunDatasetCollectionWorkflow(GalaxyObjectsTestBase):
     def setUp(self):
         super().setUp()

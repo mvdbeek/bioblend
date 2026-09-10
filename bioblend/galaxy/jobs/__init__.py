@@ -118,7 +118,11 @@ class JobsClient(Client):
           The following parameters work only on Galaxy 21.05 or later: ``user_id``,
           ``limit``, ``offset``, ``workflow_id``, ``invocation_id``.
         """
-        params: dict[str, Any] = {"limit": limit, "offset": offset}
+        params: dict[str, Any] = {
+            "limit": limit,
+            "offset": offset,
+            "order_by": order_by,
+        }
         if state:
             params["state"] = state
         if history_id:
@@ -137,8 +141,6 @@ class JobsClient(Client):
             params["date_range_max"] = date_range_max
         if user_details:
             params["user_details"] = user_details
-        if order_by:
-            params["order_by"] = order_by
         return self._get(params=params)
 
     def show_job(self, job_id: str, full_details: bool = False) -> dict[str, Any]:
@@ -357,9 +359,6 @@ class JobsClient(Client):
 
         :rtype: dict
         :return: dict containing job error reply
-
-        .. note::
-          This method works only on Galaxy 20.01 or later.
         """
         payload = {
             "message": message,
@@ -381,9 +380,6 @@ class JobsClient(Client):
 
         :rtype: dict
         :return: dict containing potential problems
-
-        .. note::
-          This method works only on Galaxy 19.05 or later.
         """
         url = self._make_url(module_id=job_id) + "/common_problems"
         return self._get(url=url)

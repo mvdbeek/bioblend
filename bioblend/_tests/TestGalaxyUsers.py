@@ -26,7 +26,6 @@ class TestGalaxyUsers(GalaxyTestBase.GalaxyTestBase):
     #        assert user["nice_total_disk_usage"] == current_user["nice_total_disk_usage"]
     #        assert user["total_disk_usage"] == current_user["total_disk_usage"]
 
-    @test_util.skip_unless_galaxy("release_19.09")  # for user purging
     def test_create_remote_user(self):
         # WARNING: only admins can create users!
         if not self.gi.config.get_config()["use_remote_user"]:
@@ -46,7 +45,6 @@ class TestGalaxyUsers(GalaxyTestBase.GalaxyTestBase):
             assert purged_user["deleted"]
             assert purged_user["purged"]
 
-    @test_util.skip_unless_galaxy("release_19.09")  # for user purging
     def test_create_local_user(self):
         # WARNING: only admins can create users!
         if self.gi.config.get_config()["use_remote_user"]:
@@ -77,7 +75,6 @@ class TestGalaxyUsers(GalaxyTestBase.GalaxyTestBase):
         assert user["nice_total_disk_usage"] is not None
         assert user["total_disk_usage"] is not None
 
-    @test_util.skip_unless_galaxy("release_19.09")  # for user purging
     def test_update_user(self):
         # WARNING: only admins can create users!
         if self.gi.config.get_config()["use_remote_user"]:
@@ -101,7 +98,6 @@ class TestGalaxyUsers(GalaxyTestBase.GalaxyTestBase):
             assert purged_user["deleted"]
             assert purged_user["purged"]
 
-    @test_util.skip_unless_galaxy("release_19.09")  # for user purging
     def test_direct_purge(self):
         """
         Test purging without prior deletion

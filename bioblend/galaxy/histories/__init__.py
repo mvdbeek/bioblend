@@ -210,8 +210,7 @@ class HistoryClient(Client):
 
         :type all: bool
         :param all: Whether to include histories from other users. This
-          parameter works only on Galaxy 20.01 or later and can be specified
-          only if the user is a Galaxy admin.
+          parameter can be specified only if the user is a Galaxy admin.
 
         :type create_time_min: str
         :param create_time_min: Return histories created after the provided

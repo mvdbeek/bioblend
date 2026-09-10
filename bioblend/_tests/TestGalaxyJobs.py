@@ -184,7 +184,6 @@ class TestGalaxyJobs(GalaxyTestBase.GalaxyTestBase):
         response = self.gi.jobs.search_jobs("random_lines1", inputs)
         assert job_id in [job["id"] for job in response]
 
-    @test_util.skip_unless_galaxy("release_20.01")
     @test_util.skip_unless_tool("random_lines1")
     def test_report_error(self):
         output = self._run_tool()

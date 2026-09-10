@@ -119,11 +119,9 @@ class ToolShedCategoryClient(Client):
              'url': '/api/categories/589548af7e391bcf'}
         """
 
-        params: dict[str, Any] = {}
-        if sort_key:
-            params.update({"sort_key": sort_key})
-        if sort_order:
-            params.update({"sort_order": sort_order})
-
+        params: dict[str, Any] = {
+            "sort_key": sort_key,
+            "sort_order": sort_order,
+        }
         url = self._make_url(category_id) + "/repositories"
         return self._get(url=url, params=params)

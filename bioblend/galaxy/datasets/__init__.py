@@ -351,9 +351,6 @@ class DatasetClient(Client):
 
         :rtype: dict
         :return: Details of the updated dataset
-
-        .. note::
-          This method works only on Galaxy 19.05 or later.
         """
         payload: dict[str, Any] = {"action": "remove_restrictions" if published else "make_private"}
         url = self._make_url(dataset_id) + "/permissions"
@@ -383,9 +380,6 @@ class DatasetClient(Client):
 
         :rtype: dict
         :return: Current roles for all available permission types.
-
-        .. note::
-          This method works only on Galaxy 19.05 or later.
         """
         payload: dict[str, Any] = {"action": "set_permissions"}
         if access_ids:

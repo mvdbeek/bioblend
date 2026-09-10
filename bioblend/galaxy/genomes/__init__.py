@@ -109,11 +109,11 @@ class GenomeClient(Client):
                  If error:
                  dict( status: 'error', error: <error message> )
         """
-        payload: dict[str, Any] = {}
+        payload: dict[str, Any] = {
+            "func": func,
+        }
         if source:
             payload["source"] = source
-        if func:
-            payload["func"] = func
         if dbkey:
             payload["dbkey"] = dbkey
         if ncbi_name:

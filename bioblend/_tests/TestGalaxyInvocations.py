@@ -34,7 +34,6 @@ class TestGalaxyInvocations(GalaxyTestBase.GalaxyTestBase):
     def tearDown(self):
         self.gi.histories.delete_history(self.history_id, purge=True)
 
-    @test_util.skip_unless_galaxy("release_19.09")
     def test_cancel_invocation(self):
         invocation = self._invoke_pause_workflow()
         invocation_id = invocation["id"]
@@ -47,7 +46,6 @@ class TestGalaxyInvocations(GalaxyTestBase.GalaxyTestBase):
         invocation = self.gi.invocations.cancel_invocation(invocation_id)
         assert invocation["state"] in ["cancelled", "cancelling"]
 
-    @test_util.skip_unless_galaxy("release_20.01")
     def test_get_invocations(self):
         invoc1 = self._invoke_workflow()
 
@@ -98,7 +96,6 @@ class TestGalaxyInvocations(GalaxyTestBase.GalaxyTestBase):
         assert len(invocs) == 1
         assert invocs[0]["id"] == invocation["id"]
 
-    @test_util.skip_unless_galaxy("release_19.09")
     def test_get_invocation_report(self):
         invocation = self._invoke_workflow()
 
@@ -133,7 +130,6 @@ class TestGalaxyInvocations(GalaxyTestBase.GalaxyTestBase):
         biocompute_object = self.gi.invocations.get_invocation_biocompute_object(invocation["id"])
         assert len(biocompute_object["description_domain"]["pipeline_steps"]) == 1
 
-    @test_util.skip_unless_galaxy("release_19.09")
     def test_get_invocation_jobs_summary(self):
         invocation = self._invoke_workflow()
         self.gi.invocations.wait_for_invocation(invocation["id"])
@@ -143,7 +139,6 @@ class TestGalaxyInvocations(GalaxyTestBase.GalaxyTestBase):
         assert len(step_jobs_summary) == 1
         assert step_jobs_summary[0]["populated_state"] == "ok"
 
-    @test_util.skip_unless_galaxy("release_19.09")
     @test_util.skip_unless_tool("cat1")
     @test_util.skip_unless_tool("cat")
     def test_workflow_scheduling(self):

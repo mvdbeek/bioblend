@@ -88,7 +88,6 @@ class TestGalaxyWorkflows(GalaxyTestBase.GalaxyTestBase):
             parameters_normalized=True,
         )
 
-    @test_util.skip_unless_galaxy("release_19.09")
     @test_util.skip_unless_tool("cat1")
     @test_util.skip_unless_tool("cat")
     def test_cancelling_workflow_scheduling(self):
@@ -116,7 +115,7 @@ class TestGalaxyWorkflows(GalaxyTestBase.GalaxyTestBase):
 
     def test_import_export_workflow_from_local_path(self):
         with pytest.raises(TypeError):
-            self.gi.workflows.import_workflow_from_local_path(None)  # type: ignore[arg-type]
+            self.gi.workflows.import_workflow_from_local_path(None)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
         path = test_util.get_abspath(os.path.join("data", "paste_columns.ga"))
         imported_wf = self.gi.workflows.import_workflow_from_local_path(path)
         assert isinstance(imported_wf, dict)
@@ -125,7 +124,7 @@ class TestGalaxyWorkflows(GalaxyTestBase.GalaxyTestBase):
         assert not imported_wf["deleted"]
         assert not imported_wf["published"]
         with pytest.raises(ConnectionError):
-            self.gi.workflows.export_workflow_to_local_path(None, None, None)  # type: ignore[arg-type]
+            self.gi.workflows.export_workflow_to_local_path(None, None)  # type: ignore[arg-type]  # ty: ignore[invalid-argument-type]
         export_dir = tempfile.mkdtemp(prefix="bioblend_test_")
         try:
             self.gi.workflows.export_workflow_to_local_path(imported_wf["id"], export_dir)
@@ -199,7 +198,7 @@ class TestGalaxyWorkflows(GalaxyTestBase.GalaxyTestBase):
         wf_list = [w for w in wfs_with_name if w["id"] == workflow["id"]]
         assert len(wf_list) == 1
         wf_data = wf_list[0]
-        if "create_time" in workflow:  # Galaxy >= 20.01
+        if "create_time" in workflow:  # Galaxy >= 22.01
             assert wf_data["create_time"] == workflow["create_time"]
         else:  # Galaxy <= 22.01
             assert wf_data["url"] == workflow["url"]
@@ -232,7 +231,6 @@ class TestGalaxyWorkflows(GalaxyTestBase.GalaxyTestBase):
         updated_wf = self.gi.workflows.update_workflow(wf["id"], published=False)
         assert not updated_wf["published"]
 
-    @test_util.skip_unless_galaxy("release_19.09")
     def test_extract_workflow_from_history(self):
         path = test_util.get_abspath(os.path.join("data", "paste_columns.ga"))
         wf = self.gi.workflows.import_workflow_from_local_path(path)
@@ -296,9 +294,6 @@ class TestGalaxyWorkflowVersions(GalaxyTestBase.GalaxyTestBase):
         cls.new_name = "new name"
         cls.gi.workflows.update_workflow(cls.workflow_id, name=cls.new_name)
 
-    @test_util.skip_unless_galaxy(
-        "release_19.09"
-    )  # due to Galaxy bug fixed in https://github.com/galaxyproject/galaxy/pull/9014
     def test_show_workflow_versions(self):
         updated_wf = self.gi.workflows.show_workflow(self.workflow_id)
         assert updated_wf["name"] == self.new_name
